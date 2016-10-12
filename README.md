@@ -12,3 +12,6 @@ Ajout : Mise à jour du projet :
 - Clavier AZERTY
 - Choix dans le type de session obtenue
 - Rapidité du script
+
+
+Projet officiel : https://github.com/b00stfr3ak/Powershell-Reverse-Rubber-Ducky
