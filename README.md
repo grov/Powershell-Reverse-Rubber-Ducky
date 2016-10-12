@@ -10,7 +10,8 @@ It will then dump the output into a file to be compiled with duckencode.jar
 
 Ajout : Mise à jour du projet :
 - Clavier AZERTY
-- Choix dans le type de session obtenue
+- Suppresion du background de session
+- Ajout d'un input pour le nom du payload.txt
 - Rapidité du script
 
 
