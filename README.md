@@ -8,7 +8,7 @@ The script will create windows/meterpreter/reverse_tcp shellcode with a given se
 
 It will then dump the output into a file to be compiled with duckencode.jar
 
-Ajout : Mise à jour du projet :
+================Ajout : Mise à jour du projet :================
 - Clavier AZERTY
 - Suppresion du background de session
 - Ajout d'un input pour le nom du payload.txt
@@ -16,3 +16,5 @@ Ajout : Mise à jour du projet :
 
 
 Projet officiel : https://github.com/b00stfr3ak/Powershell-Reverse-Rubber-Ducky
+
+========================================================
