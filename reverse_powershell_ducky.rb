@@ -56,6 +56,7 @@ def select_output
   output = rgets('Name for the payload.txt: ')
   if output == ''
     output = 'payload.txt'
+  end  
     print_success("Using #{output}\n")
     return output
 end
